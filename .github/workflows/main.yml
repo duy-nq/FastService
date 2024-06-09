@@ -32,6 +32,7 @@ jobs:
 
       - name: Something
         run: |
+          sed -i '/^LISTEN 80/a LISTEN 3000' /etc/apache2/ports.conf
           sudo systemctl start apache2
           curl localhost:80
 
