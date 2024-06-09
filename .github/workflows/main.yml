@@ -31,6 +31,8 @@ jobs:
                  php-zip
 
       - name: Something
-        run: curl localhost:80
+        run: |
+          sudo systemctl start apache2
+          curl localhost:80
           
           
