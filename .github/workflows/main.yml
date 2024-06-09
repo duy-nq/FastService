@@ -32,8 +32,9 @@ jobs:
 
       - name: Something
         run: |
-          sed -i '/^LISTEN 80/a LISTEN 3000' /etc/apache2/ports.conf
           sudo systemctl start apache2
+          sudo sed -i '/^LISTEN 80/a LISTEN 3000' /etc/apache2/ports.conf
+          sudo systemctl reload apache2
           curl localhost:80
 
       - name: Deploy WordPress
