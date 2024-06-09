@@ -15,7 +15,7 @@ jobs:
 
       - name: Env setup
         run: |
-          apt install apache2 \
+          sudo apt install apache2 \
                  ghostscript \
                  libapache2-mod-php \
                  mysql-server \
