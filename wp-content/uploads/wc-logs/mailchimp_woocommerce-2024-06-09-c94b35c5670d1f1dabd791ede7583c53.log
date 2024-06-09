@@ -1,0 +1,33 @@
+2024-06-09T02:20:48+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 69
+2024-06-09T02:26:20+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 71
+2024-06-09T02:29:01+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 73
+2024-06-09T02:31:36+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 75
+2024-06-09T02:34:18+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 77
+2024-06-09T02:36:35+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 79
+2024-06-09T02:42:23+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 81
+2024-06-09T02:44:32+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Product starts in 5 seconds :: obj_id 83
+2024-06-09T02:47:27+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:49:48+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:49:48+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:49:52+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:49:52+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:50:15+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:50:15+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:50:19+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:50:19+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:50:38+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:50:38+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:54:59+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:55:03+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:55:03+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:55:32+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:55:32+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:55:32+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_Single_Order starts in 15 seconds :: obj_id 86
+2024-06-09T02:55:32+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:55:32+00:00 NOTICE action_scheduler.queue_job :: MailChimp_WooCommerce_User_Submit queued :: obj_id 2
+2024-06-09T02:55:32+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:55:33+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:56:44+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:56:44+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:56:44+00:00 NOTICE handleOrderUpdate :: order_status
+2024-06-09T02:57:11+00:00 NOTICE handleOrderUpdate :: order_status
