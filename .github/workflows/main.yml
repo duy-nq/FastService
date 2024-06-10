@@ -44,7 +44,7 @@ jobs:
                       </VirtualHost>
                   " >> $GITHUB_ENV
 
-      - name: Save environment variable to a file
+      - name: Server Configuration
         run: |
           sudo touch /etc/apache2/sites-available/wordpress.conf
           echo "$APACHE_WPHOST_CONFIG" > sudo tee /etc/apache2/sites-available/wordpress.conf
@@ -72,9 +72,19 @@ jobs:
                  php-xml \
                  php-zip
 
+      - name: MySQL Configuration
+        run: |
+          sudo mysql -u root
+          CREATE DATABASE wordpress;
+          CREATE USER wordpress@localhost IDENTIFIED BY '123456';
+          GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER ON wordpress.* TO wordpress@localhost;
+          FLUSH PRIVILEGES;
+          quit
+
       - name: Open port 3000 for wordpress
         run: |
           echo "Listen 3000" | sudo tee -a /etc/apache2/ports.conf
-          sudo lsof -i -P -n | grep LISTEN
           sudo systemctl reload apache2
+          sudo lsof -i -P -n | grep LISTEN
           curl localhost:3000
+          ls -l /home/runner/work/FastService/FastService/
