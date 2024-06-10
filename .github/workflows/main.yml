@@ -51,13 +51,14 @@ jobs:
           echo "$APACHE_DEFAULT_CONFIG" >> sudo tee /etc/apache2/sites-available/000-default.conf
           sudo a2ensite wordpress
           sudo a2enmod rewrite
-          sudo a2enmod mod_proxy
-          sudo a2enmod mod_proxy_http
+          sudo a2enmod proxy
+          sudo a2enmod proxy_http
+          sudo a2enmod headers
+          sudo systemctl restart apache2
         
       - name: Env setup
         run: |
-          sudo apt install apache2 \
-                 ghostscript \
+          sudo apt ghostscript \
                  libapache2-mod-php \
                  mysql-server \
                  php \
