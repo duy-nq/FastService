@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Save config
+      - name: Save config wordpress
         run: echo "APACHE_WPHOST_CONFIG=
                       <VirtualHost *:3000>
                         DocumentRoot /srv/www/wordpress
@@ -27,6 +27,20 @@ jobs:
                             Options FollowSymLinks
                             Require all granted
                         </Directory>
+                      </VirtualHost>
+                  " >> $GITHUB_ENV
+
+      - name: Save config default
+        run: echo "APACHE_DEFAULT_CONFIG=
+                      <VirtualHost *:80>
+                        ServerAdmin webmaster@localhost
+                        DocumentRoot /var/www/html
+                        ProxyPreserveHost On
+                        ProxyPass / localhost:3000/
+                        ProxyPassReverse / localhost:3000/
+                        RequestHeader set X-FORWARDED-PROTO 'https'
+                        ErrorLog ${APACHE_LOG_DIR}/error.log
+                        CustomLog ${APACHE_LOG_DIR}/access.log combined
                       </VirtualHost>
                   " >> $GITHUB_ENV
 
@@ -52,9 +66,6 @@ jobs:
           sudo a2ensite wordpress
           sudo a2enmod rewrite
           ls /etc/apache2/sites-enabled/
-
-      - name: Display the content of nginx.conf
-        run: cat /etc/apache2/sites-available/wordpress.conf
         
       # - name: Env setup
       #   run: |
