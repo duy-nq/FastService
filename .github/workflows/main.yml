@@ -16,14 +16,14 @@ jobs:
       - name: Save config wordpress
         run: echo "APACHE_WPHOST_CONFIG=
                       <VirtualHost *:3000>
-                        DocumentRoot /srv/www/wordpress
-                        <Directory /srv/www/wordpress>
+                        DocumentRoot /home/runner/work/FastService/FastService/
+                        <Directory /home/runner/work/FastService/FastService/>
                             Options FollowSymLinks
                             AllowOverride Limit Options FileInfo
                             DirectoryIndex index.php
                             Require all granted
                         </Directory>
-                        <Directory /srv/www/wordpress/wp-content>
+                        <Directory /home/runner/work/FastService/FastService/wp-content>
                             Options FollowSymLinks
                             Require all granted
                         </Directory>
@@ -50,8 +50,7 @@ jobs:
           echo "$APACHE_WPHOST_CONFIG" > sudo tee /etc/apache2/sites-available/wordpress.conf
           echo "$APACHE_DEFAULT_CONFIG" >> sudo tee /etc/apache2/sites-available/000-default.conf
           sudo a2ensite wordpress
-          sudo a2enmod rewrite
-          ls /home/runner/work/FastService/FastService/          
+          sudo a2enmod rewrite          
         
       # - name: Env setup
       #   run: |
@@ -75,4 +74,4 @@ jobs:
           sudo systemctl start apache2
           sudo sed -i '/^LISTEN 80/a LISTEN 3000' /etc/apache2/ports.conf
           sudo systemctl reload apache2
-          sudo systemctl status apache2
+          curl localhost:3000
