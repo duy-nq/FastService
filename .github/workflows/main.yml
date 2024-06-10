@@ -14,28 +14,29 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Save config
-        run: echo "APACHE_WPHOST_CONFIG=
-                      <VirtualHost *:3000>
-                        DocumentRoot /srv/www/wordpress
-                        <Directory /srv/www/wordpress>
-                            Options FollowSymLinks
-                            AllowOverride Limit Options FileInfo
-                            DirectoryIndex index.php
-                            Require all granted
-                        </Directory>
-                        <Directory /srv/www/wordpress/wp-content>
-                            Options FollowSymLinks
-                            Require all granted
-                        </Directory>
-                    </VirtualHost>
-                  " >> $GITHUB_ENV
+        run: |
+          echo "APACHE_WPHOST_CONFIG=$(cat << 'EOF'
+          <VirtualHost *:3000>
+              DocumentRoot /srv/www/wordpress
+              <Directory /srv/www/wordpress>
+                  Options FollowSymLinks
+                  AllowOverride Limit Options FileInfo
+                  DirectoryIndex index.php
+                  Require all granted
+              </Directory>
+              <Directory /srv/www/wordpress/wp-content>
+                  Options FollowSymLinks
+                  Require all granted
+              </Directory>
+          </VirtualHost>
+          EOF
+          )" >> $GITHUB_ENV
               
       - name: Save environment variable to a file
         run: |
-          sudo touch /etc/apache2/sites-available/wordpress.conf
-          echo "$APACHE_WPHOST_CONFIG" > sudo tee /etc/apache2/sites-available/wordpress.conf
+          echo "$APACHE_WPHOST_CONFIG" | sudo tee /etc/apache2/sites-available/wordpress.conf
 
-      - name: Display the content of nginx.conf
+      - name: Display the content of wordpress.conf
         run: cat /etc/apache2/sites-available/wordpress.conf
         
       # - name: Env setup
