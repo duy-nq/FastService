@@ -58,7 +58,7 @@ jobs:
         
       - name: Env setup
         run: |
-          sudo apt ghostscript \
+          sudo apt install ghostscript \
                  libapache2-mod-php \
                  mysql-server \
                  php \
