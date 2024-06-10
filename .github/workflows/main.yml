@@ -75,8 +75,8 @@ jobs:
       - name: MySQL Configuration
         run: |
           sudo systemctl start mysql
-          sudo mysql -u __root
-          show databases
+          sudo mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "show databases;"
+
 
       - name: Open port 3000 for wordpress
         run: |
