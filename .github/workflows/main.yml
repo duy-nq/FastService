@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Save config
-        run: 
+        run: |
           echo "APACHE_WPHOST_CONFIG=
                   <VirtualHost *:3000>
                     DocumentRoot /srv/www/wordpress
@@ -30,15 +30,14 @@ jobs:
                     </Directory>
                 </VirtualHost>
               " >> $GITHUB_ENV
-
-      - name: Display the Nginx config from environment variable
-        run: echo "$APACHE_WPHOST_CONFIG"
-
+              
       - name: Save environment variable to a file
-        run: echo "$APACHE_WPHOST_CONFIG" > wordpress.conf
+        run: |
+          touch /etc/apache2/sites-available/wordpress.conf
+          echo "$APACHE_WPHOST_CONFIG" > /etc/apache2/sites-available/wordpress.conf
 
       - name: Display the content of nginx.conf
-        run: cat wordpress.conf
+        run: cat /etc/apache2/sites-available/wordpress.conf
         
       # - name: Env setup
       #   run: |
