@@ -44,6 +44,24 @@ jobs:
                       </VirtualHost>
                   " >> $GITHUB_ENV
 
+      - name: Set up MySQL
+        uses: docker://mysql:latest
+        with:
+          args: >
+            --name my-mysql-container
+            -e MYSQL_ROOT_PASSWORD=root
+            -e MYSQL_DATABASE=wordpress
+            -e MYSQL_USER=wordpress
+            -e MYSQL_PASSWORD=123456
+            -d mysql:latest
+  
+      - name: Wait for MySQL to start
+        run: sleep 15s
+
+      - name: Execute SQL commands
+        run: |
+          mysql -h localhost -u wordpress -p123456 -e "show databases"
+
       - name: Server Configuration
         run: |
           sudo touch /etc/apache2/sites-available/wordpress.conf
@@ -71,13 +89,6 @@ jobs:
                  php-mysql \
                  php-xml \
                  php-zip
-
-      - name: MySQL Configuration
-        run: |
-          sudo systemctl stop mysql
-          sudo mysqld_safe --skip-grant-tables --skip-networking &
-          mysql -u root -e "show databases"
-
 
       - name: Open port 3000 for wordpress
         run: |
