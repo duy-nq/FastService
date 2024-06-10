@@ -13,31 +13,52 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Env setup
-        run: |
-          sudo apt install apache2 \
-                 ghostscript \
-                 libapache2-mod-php \
-                 mysql-server \
-                 php \
-                 php-bcmath \
-                 php-curl \
-                 php-imagick \
-                 php-intl \
-                 php-json \
-                 php-mbstring \
-                 php-mysql \
-                 php-xml \
-                 php-zip
+      - name: Save config
+        run: 
+          echo "APACHE_WPHOST_CONFIG=
+                  <VirtualHost *:3000>
+                    DocumentRoot /srv/www/wordpress
+                    <Directory /srv/www/wordpress>
+                        Options FollowSymLinks
+                        AllowOverride Limit Options FileInfo
+                        DirectoryIndex index.php
+                        Require all granted
+                    </Directory>
+                    <Directory /srv/www/wordpress/wp-content>
+                        Options FollowSymLinks
+                        Require all granted
+                    </Directory>
+                </VirtualHost>
+              " >> $GITHUB_ENV
 
-      - name: Something
+      - name: Display the Nginx config from environment variable
+        run: echo "$APACHE_WPHOST_CONFIG"
+
+      - name: Save environment variable to a file
+        run: echo "$APACHE_WPHOST_CONFIG" > wordpress.conf
+
+      - name: Display the content of nginx.conf
+        run: cat wordpress.conf
+        
+      # - name: Env setup
+      #   run: |
+      #     sudo apt install apache2 \
+      #            ghostscript \
+      #            libapache2-mod-php \
+      #            mysql-server \
+      #            php \
+      #            php-bcmath \
+      #            php-curl \
+      #            php-imagick \
+      #            php-intl \
+      #            php-json \
+      #            php-mbstring \
+      #            php-mysql \
+      #            php-xml \
+      #            php-zip
+
+      - name: Open port 3000 for wordpress
         run: |
           sudo systemctl start apache2
           sudo sed -i '/^LISTEN 80/a LISTEN 3000' /etc/apache2/ports.conf
           sudo systemctl reload apache2
-          curl localhost:80
-
-      - name: Deploy WordPress
-        # You may pin to the exact commit or the version.
-        # uses: rtCamp/action-deploy-wordpress@2f2e1345ac53cee3eeef97691d196a41cfed0780
-        uses: rtCamp/action-deploy-wordpress@v3.1.0
