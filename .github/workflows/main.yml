@@ -44,20 +44,6 @@ jobs:
                       </VirtualHost>
                   " >> $GITHUB_ENV
 
-      # - name: Setup reverse proxy
-      #   run: echo "APACHE_DEFAULT_CONFIG=
-      #     <VirtualHost *:80>                 
-      #       ServerAdmin webmaster@localhost
-      #       DocumentRoot /var/www/html
-      #       ProxyPreserveHost On
-      #       ProxyPass / localhost:3000/
-      #       ProxyPassReverse / localhost:3000/
-      #       RequestHeader set X-FORWARDED-PROTO 'https'
-      #       ErrorLog ${APACHE_LOG_DIR}/error.log
-      #       CustomLog ${APACHE_LOG_DIR}/access.log combined
-      #     </VirtualHost>
-      #     " >> $GITHUB_ENV
-
       - name: Save environment variable to a file
         run: |
           sudo touch /etc/apache2/sites-available/wordpress.conf
@@ -65,7 +51,7 @@ jobs:
           echo "$APACHE_DEFAULT_CONFIG" >> sudo tee /etc/apache2/sites-available/000-default.conf
           sudo a2ensite wordpress
           sudo a2enmod rewrite
-          ls /etc/apache2/sites-enabled/
+          ls /home/runner/work/FastService/FastService/          
         
       # - name: Env setup
       #   run: |
