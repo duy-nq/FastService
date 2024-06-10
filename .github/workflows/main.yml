@@ -33,7 +33,7 @@ jobs:
       - name: Save environment variable to a file
         run: |
           sudo touch /etc/apache2/sites-available/wordpress.conf
-          echo "$APACHE_WPHOST_CONFIG" > /etc/apache2/sites-available/wordpress.conf
+          echo "$APACHE_WPHOST_CONFIG" > sudo tee /etc/apache2/sites-available/wordpress.conf
 
       - name: Display the content of nginx.conf
         run: cat /etc/apache2/sites-available/wordpress.conf
