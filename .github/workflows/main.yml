@@ -74,7 +74,7 @@ jobs:
 
       - name: Open port 3000 for wordpress
         run: |
-          sudo sed -i '/^LISTEN 80/a LISTEN 3000' /etc/apache2/ports.conf
+          echo "Listen 3000" | sudo tee -a /etc/apache2/ports.conf
           sudo lsof -i -P -n | grep LISTEN
           sudo systemctl reload apache2
           curl localhost:3000
