@@ -74,6 +74,8 @@ jobs:
 
       - name: MySQL Configuration
         run: |
+          sudo systemctl start mysql
+          sudo systemctl status mysql
           sudo mysql -u root
           CREATE DATABASE wordpress;
           CREATE USER wordpress@localhost IDENTIFIED BY '123456';
