@@ -74,8 +74,9 @@ jobs:
 
       - name: MySQL Configuration
         run: |
-          sudo systemctl start mysql
-          sudo mysql -u root -p -e "123456"
+          sudo systemctl stop mysql
+          sudo mysqld_safe --skip-grant-tables --skip-networking &
+          mysql -u root -e "show databases"
 
 
       - name: Open port 3000 for wordpress
