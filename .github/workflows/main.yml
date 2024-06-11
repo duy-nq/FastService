@@ -44,10 +44,21 @@ jobs:
                       </VirtualHost>
                   " >> $GITHUB_ENV
 
+      - name: MySQL for Wordpress
+        run: |
+          sudo systemctl start mysql
+          mysql -h localhost -u root -p"${MYSQL_ROOT_PASSWORD}" -e "
+            create table wordpress;
+            CREATE USER wordpress@localhost IDENTIFIED BY '<your-password>';
+            GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER ON wordpress.* TO wordpress@localhost;
+            FLUSH PRIVILEGES;
+            quit
+            "
+
       - name: Execute SQL commands
         run: |
           sudo systemctl start mysql
-          mysql -h localhost -u root -proot -e "show databases"
+          mysql -h localhost -u root -p"${MYSQL_ROOT_PASSWORD}" -e "show databases"
 
       - name: Server Configuration
         run: |
