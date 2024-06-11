@@ -49,7 +49,7 @@ jobs:
         with:
           args: >
             --name my-mysql-container
-            -e MYSQL_ROOT_PASSWORD=root
+            -e MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}"
             -e MYSQL_DATABASE=wordpress
             -e MYSQL_USER=wordpress
             -e MYSQL_PASSWORD=123456
