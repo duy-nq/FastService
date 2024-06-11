@@ -43,19 +43,10 @@ jobs:
                         CustomLog ${APACHE_LOG_DIR}/access.log combined
                       </VirtualHost>
                   " >> $GITHUB_ENV
-
-      - name: Set up MySQL
-        uses: docker://mysql:latest
-        with:
-          args: >
-            --name my-mysql-container
-            -e MYSQL_DATABASE=wordpress
-            -e MYSQL_USER=wordpress
-            -e MYSQL_PASSWORD=123456
-            -d mysql:latest
   
       - name: Wait for MySQL to start
-        run: sleep 15s
+        run: 
+          echo "${MYSQL_ROOT_PASSWORD}"
 
       - name: Execute SQL commands
         run: |
