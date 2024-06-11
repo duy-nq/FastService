@@ -43,13 +43,9 @@ jobs:
                         CustomLog ${APACHE_LOG_DIR}/access.log combined
                       </VirtualHost>
                   " >> $GITHUB_ENV
-  
-      - name: Wait for MySQL to start
-        run: 
-          echo "${MYSQL_ROOT_PASSWORD}"
-
       - name: Execute SQL commands
         run: |
+          sudo systemctl start mysql
           mysql -h localhost -u wordpress -p123456 -e "show databases"
 
       - name: Server Configuration
