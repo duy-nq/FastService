@@ -15,7 +15,7 @@ jobs:
 
       - name: Save config wordpress
         run: echo "APACHE_WPHOST_CONFIG=
-                      <VirtualHost *:3000>
+                      <VirtualHost *:80>
                         DocumentRoot /home/runner/work/FastService/FastService/
                         <Directory /home/runner/work/FastService/FastService/>
                             Options FollowSymLinks
@@ -66,6 +66,7 @@ jobs:
           echo "$APACHE_WPHOST_CONFIG" > sudo tee /etc/apache2/sites-available/wordpress.conf
           echo "$APACHE_DEFAULT_CONFIG" >> sudo tee /etc/apache2/sites-available/000-default.conf
           sudo a2ensite wordpress
+          sudo a2dissite 000-default
           sudo a2enmod rewrite
           sudo a2enmod proxy
           sudo a2enmod proxy_http
