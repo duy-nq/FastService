@@ -46,10 +46,11 @@ jobs:
 
       - name: Set up MySQL
         uses: docker://mysql:latest
+        environment: 
+          - MYSQL_ROOT_PASSWORD:root
         with:
           args: >
             --name my-mysql-container
-            -e MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD }}"
             -e MYSQL_DATABASE=wordpress
             -e MYSQL_USER=wordpress
             -e MYSQL_PASSWORD=123456
