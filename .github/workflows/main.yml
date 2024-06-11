@@ -16,8 +16,8 @@ jobs:
       - name: Save config wordpress
         run: echo "APACHE_WPHOST_CONFIG=
                       <VirtualHost *:80>
-                        DocumentRoot /home/runner/work/FastService/FastService/
-                        <Directory /home/runner/work/FastService/FastService/>
+                        DocumentRoot /home/runner/work/FastService/FastService
+                        <Directory /home/runner/work/FastService/FastService>
                             Options FollowSymLinks
                             AllowOverride Limit Options FileInfo
                             DirectoryIndex index.php
@@ -94,5 +94,5 @@ jobs:
           echo "Listen 3000" | sudo tee -a /etc/apache2/ports.conf
           sudo systemctl reload apache2
           sudo lsof -i -P -n | grep LISTEN
-          curl localhost:3000
+          curl http://localhost
           ls -l /home/runner/work/FastService/FastService/
