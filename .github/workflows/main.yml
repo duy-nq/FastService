@@ -46,8 +46,6 @@ jobs:
 
       - name: Set up MySQL
         uses: docker://mysql:latest
-        environment: 
-          - MYSQL_ROOT_PASSWORD:root
         with:
           args: >
             --name my-mysql-container
