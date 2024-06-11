@@ -43,10 +43,11 @@ jobs:
                         CustomLog ${APACHE_LOG_DIR}/access.log combined
                       </VirtualHost>
                   " >> $GITHUB_ENV
+
       - name: Execute SQL commands
         run: |
           sudo systemctl start mysql
-          mysql -h localhost -u wordpress -p123456 -e "show databases"
+          mysql -h localhost -u root -proot -e "show databases"
 
       - name: Server Configuration
         run: |
